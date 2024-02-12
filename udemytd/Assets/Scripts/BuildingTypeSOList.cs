@@ -5,6 +5,4 @@ using UnityEngine;
 public class BuildingTypeSOList : ScriptableObject
 {
     public List<BuildingTypeSO> soList;
-
-   
 }
