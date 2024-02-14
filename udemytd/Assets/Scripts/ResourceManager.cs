@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+    public static ResourceManager Instance { get; private set; }
+
     private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
     private List<ResourceTypeSO> resourceTypeSoList;
 
     private void Awake()
     {
+        Instance = this;
         InitializeResourceDictionary();
     }
 
@@ -41,7 +44,7 @@ public class ResourceManager : MonoBehaviour
     }
 
 
-    public void AddResource(ResourceTypeSO resourceTypeSO, int amount)
+    public void AddResource(ResourceTypeSO resourceTypeSO, int amount = 1)
     {
         resourceAmountDictionary[resourceTypeSO] += amount;
     }

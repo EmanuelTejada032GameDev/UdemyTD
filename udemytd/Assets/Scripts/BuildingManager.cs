@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-  
+
     private Camera mainCamera;
     private BuildingTypeSO buildingType;
     private List<BuildingTypeSO> buildingTypeSOList;
+
+    private void Awake()
+    {
+    }
 
     private void Start()
     {

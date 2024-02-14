@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soName: Gold Harvester
   pfHarvester: {fileID: 5698486551715392540, guid: 89d04a4468a53ed4f8a60b1f4c618679, type: 3}
+  resourgeGenerationConfig:
+    _timeToGenerateResource: 3
+    _resource: {fileID: 11400000, guid: 3c783c9d84782ac46b05a50e2e1f2b81, type: 2}

@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soName: Stone Harvester
   pfHarvester: {fileID: 5698486551715392540, guid: 5390a49399e395844a7cf2ffa01b147b, type: 3}
+  resourgeGenerationConfig:
+    _timeToGenerateResource: 2
+    _resource: {fileID: 11400000, guid: 383decb5dd3bf5b42acfb7c7cb1708ba, type: 2}
