@@ -16,23 +16,7 @@ public class ResourceManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            AddResource(resourceTypeSoList[0], 2);
-            PrintResourceDictionaryStatus();
-
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            AddResource(resourceTypeSoList[1], 2);
-            PrintResourceDictionaryStatus();
-
-        }
-        else if (Input.GetKeyDown(KeyCode.G))
-        {
-            AddResource(resourceTypeSoList[2], 2);
-            PrintResourceDictionaryStatus();
-        }
+       
     }
 
     private void PrintResourceDictionaryStatus()
@@ -47,6 +31,7 @@ public class ResourceManager : MonoBehaviour
     public void AddResource(ResourceTypeSO resourceTypeSO, int amount = 1)
     {
         resourceAmountDictionary[resourceTypeSO] += amount;
+        PrintResourceDictionaryStatus();
     }
 
     private void InitializeResourceDictionary()

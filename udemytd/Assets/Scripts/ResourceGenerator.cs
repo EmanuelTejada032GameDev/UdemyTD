@@ -1,26 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceGenerator : MonoBehaviour
 {
     private BuildingTypeSO _buildingTypeSO;
 
-    private float _timer;
-    [SerializeField] private float _timeToGenerateResource;
+    private Dictionary<ResourceGeneratorConfig, float> _timerDictionary;
+    private Dictionary<ResourceGeneratorConfig, float> _timeToGenerateResourceDictionary;
 
     private void Awake()
     {
         _buildingTypeSO = GetComponent<BuildingTypeHolder>().BuildingTypeSO;
-        _timeToGenerateResource = _buildingTypeSO.resourgeGenerationConfig.TimeToGenerateResource;
+        _timerDictionary = new Dictionary<ResourceGeneratorConfig, float>();
+        _timeToGenerateResourceDictionary = new Dictionary<ResourceGeneratorConfig, float>();
+
+        foreach (ResourceGeneratorConfig resourceGeneratorConfig in _buildingTypeSO.resourgeGenerationConfigList)
+        {
+            _timerDictionary[resourceGeneratorConfig] = 0f;
+            _timeToGenerateResourceDictionary[resourceGeneratorConfig] = resourceGeneratorConfig.TimeToGenerateResource;
+        }
     }
 
     void Update()
     {
-        _timer -= Time.deltaTime;
-        if(_timer <= 0f)
+        foreach (ResourceGeneratorConfig resourceGeneratorConfig in _buildingTypeSO.resourgeGenerationConfigList)
         {
-            ResourceManager.Instance.AddResource(_buildingTypeSO.resourgeGenerationConfig.Resource);
-            Debug.Log($"Generating 1 {_buildingTypeSO.resourgeGenerationConfig.Resource.soName}");
-            _timer += _timeToGenerateResource;
+            _timerDictionary[resourceGeneratorConfig] -= Time.deltaTime;
+            if (_timerDictionary[resourceGeneratorConfig] <= 0f)
+            {
+                ResourceManager.Instance.AddResource(resourceGeneratorConfig.Resource);
+                _timerDictionary[resourceGeneratorConfig] += _timeToGenerateResourceDictionary[resourceGeneratorConfig];
+            }
         }
     }
+
 }
