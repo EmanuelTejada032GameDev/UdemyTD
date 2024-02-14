@@ -17,5 +17,3 @@ MonoBehaviour:
   resourgeGenerationConfigList:
   - _timeToGenerateResource: 1
     _resource: {fileID: 11400000, guid: def9e9a511d143b44b5497d1a7aacf03, type: 2}
-  - _timeToGenerateResource: 2
-    _resource: {fileID: 11400000, guid: 383decb5dd3bf5b42acfb7c7cb1708ba, type: 2}
