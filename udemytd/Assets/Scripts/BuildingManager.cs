@@ -1,42 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 public class BuildingManager : MonoBehaviour
 {
 
+    public static BuildingManager Instance { get; private set; } 
+
     private Camera mainCamera;
-    private BuildingTypeSO buildingType;
+    private BuildingTypeSO selectedBuildingType;
     private List<BuildingTypeSO> buildingTypeSOList;
 
     private void Awake()
     {
+        Instance = this;
     }
 
     private void Start()
     {
         mainCamera = Camera.main;
         buildingTypeSOList = Resources.Load<BuildingTypeSOList>("BuildingTypeSOList").soList;
-        buildingType = buildingTypeSOList[0];
     }
 
     private void Update()
     {
-        //mouseCursorTransform.position = CursorScreenPosition();
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() )
         {
-            buildingType = buildingTypeSOList[0];
-            Instantiate(buildingType.pfHarvester, CursorScreenPosition(), Quaternion.identity);
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            buildingType = buildingTypeSOList[1];
-            Instantiate(buildingType.pfHarvester, CursorScreenPosition(), Quaternion.identity);
-        }else if (Input.GetMouseButtonDown(2))
-        {
-            buildingType = buildingTypeSOList[2];
-            Instantiate(buildingType.pfHarvester, CursorScreenPosition(), Quaternion.identity);
+            if(selectedBuildingType != null)
+                Instantiate(selectedBuildingType.pfHarvester, CursorScreenPosition(), Quaternion.identity);
         }
     }
 
@@ -45,5 +36,15 @@ public class BuildingManager : MonoBehaviour
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;   
         return mouseWorldPosition;
+    }
+
+    public void SetSelectedBuildingType(BuildingTypeSO buildingTypeSO)
+    {
+        selectedBuildingType = buildingTypeSO;
+    }
+
+    public BuildingTypeSO GetSelectedBuildingType()
+    {
+        return selectedBuildingType;
     }
 }
