@@ -7,5 +7,7 @@ public class BuildingTypeSO : ScriptableObject
     public string soName;
     public Transform pfHarvester;
     public Sprite sprite;
-    public List<ResourceGeneratorConfig> resourgeGenerationConfigList;
+    public ResourceGeneratorConfig resourgeGenerationConfig;
+
+    //public List<ResourceGeneratorConfig> resourgeGenerationConfigList;
 }

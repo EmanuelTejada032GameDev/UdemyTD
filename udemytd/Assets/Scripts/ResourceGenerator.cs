@@ -1,37 +1,53 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceGenerator : MonoBehaviour
 {
-    private BuildingTypeSO _buildingTypeSO;
+    private ResourceGeneratorConfig _resourceGeneratorConfig;
 
-    private Dictionary<ResourceGeneratorConfig, float> _timerDictionary;
-    private Dictionary<ResourceGeneratorConfig, float> _timeToGenerateResourceDictionary;
+    private float _timer;
+    [SerializeField] private float _timeToGenerateResource;
+    private int reachedResourceNodes = 0;
+
+    private void Start()
+    {
+        Collider2D[] collisionedObjects = Physics2D.OverlapCircleAll(transform.position, _resourceGeneratorConfig.ResourceDetectionRadius);
+
+       
+        foreach (Collider2D collisionedObject in collisionedObjects)
+        {
+            ResourceNode resourceNode = collisionedObject.GetComponent<ResourceNode>();
+            if (resourceNode != default && resourceNode.ResourceType == _resourceGeneratorConfig.Resource)
+            {
+                reachedResourceNodes++;
+            }
+        }
+
+        Mathf.Clamp(reachedResourceNodes, 0, _resourceGeneratorConfig.MaxResourceNodes);
+        if (reachedResourceNodes == 0) enabled = false;
+
+        float baseTime = _resourceGeneratorConfig.TimeToGenerateResource; // Base time for one unit of resource
+        float scaleFactor = 1.2f; // Scaling factor to adjust time
+        _timeToGenerateResource = baseTime / (1 + scaleFactor * reachedResourceNodes);
+    }
 
     private void Awake()
     {
-        _buildingTypeSO = GetComponent<BuildingTypeHolder>().BuildingTypeSO;
-        _timerDictionary = new Dictionary<ResourceGeneratorConfig, float>();
-        _timeToGenerateResourceDictionary = new Dictionary<ResourceGeneratorConfig, float>();
-
-        foreach (ResourceGeneratorConfig resourceGeneratorConfig in _buildingTypeSO.resourgeGenerationConfigList)
-        {
-            _timerDictionary[resourceGeneratorConfig] = 0f;
-            _timeToGenerateResourceDictionary[resourceGeneratorConfig] = resourceGeneratorConfig.TimeToGenerateResource;
-        }
+        _resourceGeneratorConfig = GetComponent<BuildingTypeHolder>().BuildingTypeSO.resourgeGenerationConfig;
     }
+
 
     void Update()
     {
-        foreach (ResourceGeneratorConfig resourceGeneratorConfig in _buildingTypeSO.resourgeGenerationConfigList)
-        {
-            _timerDictionary[resourceGeneratorConfig] -= Time.deltaTime;
-            if (_timerDictionary[resourceGeneratorConfig] <= 0f)
-            {
-                ResourceManager.Instance.AddResource(resourceGeneratorConfig.Resource);
-                _timerDictionary[resourceGeneratorConfig] += _timeToGenerateResourceDictionary[resourceGeneratorConfig];
-            }
-        }
+        GenerateResource();
     }
 
+    private void GenerateResource()
+    {
+        _timer -= Time.deltaTime;
+        if (_timer <= 0f)
+        {
+            _timer += _timeToGenerateResource;
+            ResourceManager.Instance.AddResource(_resourceGeneratorConfig.Resource);
+        }
+    }
 }
