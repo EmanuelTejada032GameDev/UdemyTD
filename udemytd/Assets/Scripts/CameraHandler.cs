@@ -1,5 +1,4 @@
 using Cinemachine;
-using System;
 using UnityEngine;
 
 public class CameraHandler : MonoBehaviour
@@ -12,8 +11,8 @@ public class CameraHandler : MonoBehaviour
 
     private float _zoomAmount = 2f;
     private float _zoomSpeed = 5f;
-    private float _maxZoomIn = 10f;
-    private float _maxZoomOut = 20f;
+    [SerializeField] private float _maxZoomIn = 10f;
+    [SerializeField] private float _maxZoomOut = 30f;
 
     private void Start()
     {

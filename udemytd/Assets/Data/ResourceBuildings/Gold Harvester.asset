@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Gold Harvester
   m_EditorClassIdentifier: 
   soName: Gold Harvester
-  pfHarvester: {fileID: 5698486551715392540, guid: 89d04a4468a53ed4f8a60b1f4c618679, type: 3}
+  prefab: {fileID: 5698486551715392540, guid: 89d04a4468a53ed4f8a60b1f4c618679, type: 3}
   sprite: {fileID: 21300000, guid: 8ead931dd91bff8489e75de9c414f17f, type: 3}
   resourgeGenerationConfig:
-    _timeToGenerateResource: 2
+    _timeToGenerateResource: 4
     _resource: {fileID: 11400000, guid: 3c783c9d84782ac46b05a50e2e1f2b81, type: 2}
     _resourceDetectionRadius: 7.25
     _maxResourceNodes: 3
+  spaceRadiusRequiredToBuild: 10
+  maxDistanceFromOtherBuilding: 25

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,12 +12,13 @@ public class BuildingTypeSelectUI : MonoBehaviour
     [SerializeField] Transform _cursorTransformTemplate;
     Transform _cursorTransform;
 
+    [SerializeField]private List<BuildingTypeSO> _buildingTypesSOToExcludeFromUI;
     private void Awake()
     {
         _buildingTypeBtnTemplateTransform = transform.Find("btnTemplate");
         _buildingTypeBtnTemplateTransform.gameObject.SetActive(false);
 
-        _buildingTypeSOList = Resources.Load<BuildingTypeSOList>(typeof(BuildingTypeSOList).Name).soList;
+        _buildingTypeSOList = Resources.Load<BuildingTypeSOList>(typeof(BuildingTypeSOList).Name).soList.Where(x => !_buildingTypesSOToExcludeFromUI.Contains(x)).ToList();
     }
 
     private void Start()
