@@ -6,21 +6,11 @@ public class ResourceGenerator : MonoBehaviour
 
     private float _timer;
     [SerializeField] private float _timeToGenerateResource;
-    private int reachedResourceNodes = 0;
+    private static int reachedResourceNodes = 0;
 
     private void Start()
     {
-        Collider2D[] collisionedObjects = Physics2D.OverlapCircleAll(transform.position, _resourceGeneratorConfig.ResourceDetectionRadius);
-
-       
-        foreach (Collider2D collisionedObject in collisionedObjects)
-        {
-            ResourceNode resourceNode = collisionedObject.GetComponent<ResourceNode>();
-            if (resourceNode != default && resourceNode.ResourceType == _resourceGeneratorConfig.Resource)
-            {
-                reachedResourceNodes++;
-            }
-        }
+        reachedResourceNodes = GetNearbyResourceNodes(transform.position, _resourceGeneratorConfig);
 
         Mathf.Clamp(reachedResourceNodes, 0, _resourceGeneratorConfig.MaxResourceNodes);
         if (reachedResourceNodes == 0) enabled = false;
@@ -51,6 +41,22 @@ public class ResourceGenerator : MonoBehaviour
         }
     }
 
+    public static int GetNearbyResourceNodes(Vector3 originPosition, ResourceGeneratorConfig resourceGeneratorConfig )
+    {
+        Collider2D[] collisionedObjects = Physics2D.OverlapCircleAll(originPosition, resourceGeneratorConfig.ResourceDetectionRadius);
+        int nearbyResources = 0;
+
+        foreach (Collider2D collisionedObject in collisionedObjects)
+        {
+            ResourceNode resourceNode = collisionedObject.GetComponent<ResourceNode>();
+            if (resourceNode != default && resourceNode.ResourceType == resourceGeneratorConfig.Resource)
+            {
+                nearbyResources++;
+            }
+        }
+
+        return nearbyResources;
+    }
 
     public ResourceGeneratorConfig GetResourceGeneratorConfig()
     {
