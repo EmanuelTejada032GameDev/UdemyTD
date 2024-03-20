@@ -16,6 +16,6 @@ public class ResourceGeneratorOverlay : MonoBehaviour
 
     private void Update()
     {
-        _barTransform.localScale = new Vector3(1-_resourceGenerator.GetTimeNormalized(),1,1);
+        _barTransform.localScale = new Vector3(1 -_resourceGenerator.GetTimeNormalized(),1,1);
     }
 }

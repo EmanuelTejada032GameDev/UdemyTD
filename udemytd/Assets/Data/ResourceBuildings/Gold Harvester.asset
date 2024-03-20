@@ -22,3 +22,8 @@ MonoBehaviour:
     _maxResourceNodes: 3
   spaceRadiusRequiredToBuild: 10
   maxDistanceFromOtherBuilding: 25
+  buildingResourceAmountCost:
+  - resourceType: {fileID: 11400000, guid: def9e9a511d143b44b5497d1a7aacf03, type: 2}
+    resourceAmount: 100
+  - resourceType: {fileID: 11400000, guid: 383decb5dd3bf5b42acfb7c7cb1708ba, type: 2}
+    resourceAmount: 60
