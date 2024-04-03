@@ -25,7 +25,24 @@ public class TooltipUI : MonoBehaviour
 
     private void Update()
     {
-        _rectTransform.anchoredPosition = Input.mousePosition / _canvasRectTransform.localScale.x; //  to get precise position since scale mode is screen with screen size
+        UpdateTooltipPosition();
+    }
+
+    private void UpdateTooltipPosition()
+    {
+        Vector2 anchoredPosition = Input.mousePosition / _canvasRectTransform.localScale.x; //  to get precise position since scale mode is screen with screen size
+
+        if (anchoredPosition.x + _backgroundRectTransform.rect.width > _canvasRectTransform.rect.width)
+        {
+            anchoredPosition.x = _canvasRectTransform.rect.width - _backgroundRectTransform.rect.width;
+        }
+
+        if (anchoredPosition.y + _backgroundRectTransform.rect.height > _canvasRectTransform.rect.height)
+        {
+            anchoredPosition.y = _canvasRectTransform.rect.height - _backgroundRectTransform.rect.height;
+        }
+
+        _rectTransform.anchoredPosition = anchoredPosition;
     }
 
     private void SetText(string newText)
