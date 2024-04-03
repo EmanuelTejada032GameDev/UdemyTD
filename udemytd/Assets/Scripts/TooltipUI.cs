@@ -57,14 +57,14 @@ public class TooltipUI : MonoBehaviour
 
     public void Show(string newText)
     {
-        SetText(newText);
         gameObject.SetActive(true);
+        SetText(newText);
     }
 
     public void Hide()
     {
-        gameObject.SetActive(false);
         SetText("");
+        gameObject.SetActive(false);
     }
   
 }
