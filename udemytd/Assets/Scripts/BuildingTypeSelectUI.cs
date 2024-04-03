@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
     {
         _buildingTypeBtnTemplateTransform = transform.Find("btnTemplate");
         _buildingTypeBtnTemplateTransform.gameObject.SetActive(false);
+        _cursorTransformTemplate.gameObject.SetActive(false);
 
         _buildingTypeSOList = Resources.Load<BuildingTypeSOList>(typeof(BuildingTypeSOList).Name).soList.Where(x => !_buildingTypesSOToExcludeFromUI.Contains(x)).ToList();
     }
@@ -36,7 +38,9 @@ public class BuildingTypeSelectUI : MonoBehaviour
         _cursorTransform.gameObject.SetActive(true);
         _cursorTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetPosition * index, 0);
         _cursorTransform.gameObject.GetComponent<Button>().onClick.AddListener(() => SelectBuildingType(null));
-        
+        _cursorTransform.GetComponent<MouseEventsHandler>().OnMouseEnter += (object sender, EventArgs eventData) => { TooltipUI.Instance.Show("Arrow"); };
+        _cursorTransform.GetComponent<MouseEventsHandler>().OnMouseExit += (object sender, EventArgs eventData) => { TooltipUI.Instance.Hide(); };
+
         index++;
 
         foreach (BuildingTypeSO buildingTypeSO in _buildingTypeSOList)
@@ -47,6 +51,10 @@ public class BuildingTypeSelectUI : MonoBehaviour
             buildingTypeTransform.Find("itemImage").GetComponent<Image>().sprite = buildingTypeSO.sprite;
 
             buildingTypeTransform.gameObject.GetComponent<Button>().onClick.AddListener(() => SelectBuildingType(buildingTypeSO));
+
+            buildingTypeTransform.GetComponent<MouseEventsHandler>().OnMouseEnter += (object sender, EventArgs eventData) => { TooltipUI.Instance.Show(buildingTypeSO.soName); };
+            buildingTypeTransform.GetComponent<MouseEventsHandler>().OnMouseExit += (object sender, EventArgs eventData) => { TooltipUI.Instance.Hide(); };
+
             _buildingTypeBtnTemplateTransformDictionary[buildingTypeSO] = buildingTypeTransform;
             index++;
         }
