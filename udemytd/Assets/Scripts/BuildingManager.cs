@@ -36,8 +36,17 @@ public class BuildingManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() )
         {
-            if (_selectedBuildingType != null && CanPlaceBuilding(_selectedBuildingType, Utils.CursorScreenPosition()) && ResourceManager.Instance.CanAffordBuilding(_selectedBuildingType.buildingResourceAmountCost))
-                Instantiate(_selectedBuildingType.prefab, Utils.CursorScreenPosition(), Quaternion.identity);
+            if (_selectedBuildingType != null && CanPlaceBuilding(_selectedBuildingType, Utils.CursorScreenPosition())){
+                if (ResourceManager.Instance.CanAffordBuilding(_selectedBuildingType.buildingResourceAmountCost))
+                {
+                    Instantiate(_selectedBuildingType.prefab, Utils.CursorScreenPosition(), Quaternion.identity);
+                }
+                else
+                {
+                    TooltipUI.Instance.Show($"Cannot Afford Building {_selectedBuildingType.BuildingCostStringMessage()}", new TooltipUI.TooltipTimer());
+                }
+            }
+               
         }
     }
 
@@ -58,7 +67,12 @@ public class BuildingManager : MonoBehaviour
         BoxCollider2D boxCollider2D = buildingTypeSO.prefab.GetComponent<BoxCollider2D>();
         Collider2D[] foundCollidersWithinColliderRadius = Physics2D.OverlapBoxAll(position + (Vector3)boxCollider2D.offset, boxCollider2D.size, 0);
         bool isAreaClear = foundCollidersWithinColliderRadius.Length == 0;
-        if (!isAreaClear) return false;
+        if (!isAreaClear)
+        {
+            TooltipUI.Instance.Show("Area is not clear", new TooltipUI.TooltipTimer());
+            return false;
+        }
+
 
         // Check building radius construction required to build is clear
         Collider2D[] foundCollidersWithinConstructionRequiredRadius = Physics2D.OverlapCircleAll(position, buildingTypeSO.spaceRadiusRequiredToBuild);
@@ -66,14 +80,22 @@ public class BuildingManager : MonoBehaviour
         {
             BuildingTypeHolder buildingTypeHolder = collider.gameObject.GetComponent<BuildingTypeHolder>();
             if (buildingTypeHolder == default) continue;
-            if (buildingTypeHolder.BuildingTypeSO == buildingTypeSO) return false;
+            if (buildingTypeHolder.BuildingTypeSO == buildingTypeSO)
+            {
+                TooltipUI.Instance.Show($"Too close to another {buildingTypeSO.soName}", new TooltipUI.TooltipTimer());
+                return false;
+            }
+
         }
 
         // Check building is not too far from other buildings
         Collider2D[] foundCollidersWithinMaxRadiusRequiredFromOtherBuildings = Physics2D.OverlapCircleAll(position, buildingTypeSO.maxDistanceFromOtherBuilding, BuildingsLayerMask);
-        
-        if(foundCollidersWithinMaxRadiusRequiredFromOtherBuildings.Length == 0) return false;
 
+        if (foundCollidersWithinMaxRadiusRequiredFromOtherBuildings.Length == 0)
+        {
+            TooltipUI.Instance.Show("Too far from other buildings", new TooltipUI.TooltipTimer());
+            return false;
+        }
         return true;
     }
 

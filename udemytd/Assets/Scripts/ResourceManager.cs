@@ -69,4 +69,6 @@ public class ResourceManager : MonoBehaviour
             resourceAmountDictionary[resourceAmount.resourceType] -= resourceAmount.resourceAmount;
         }
     }
+
+   
 }

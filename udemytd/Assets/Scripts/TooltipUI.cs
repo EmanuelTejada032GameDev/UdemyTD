@@ -12,6 +12,7 @@ public class TooltipUI : MonoBehaviour
     private RectTransform _rectTransform;
     private TextMeshProUGUI _tooltipText;
     private RectTransform _backgroundRectTransform;
+    private TooltipTimer _tooltipTimer;
 
     private void Awake()
     {
@@ -43,6 +44,12 @@ public class TooltipUI : MonoBehaviour
         }
 
         _rectTransform.anchoredPosition = anchoredPosition;
+        if (_tooltipTimer != null)
+        {
+            _tooltipTimer.Timer -= Time.deltaTime;
+            if (_tooltipTimer.Timer <= 0) Hide();
+        }
+
     }
 
     private void SetText(string newText)
@@ -52,13 +59,15 @@ public class TooltipUI : MonoBehaviour
 
         Vector2 textSize = _tooltipText.GetRenderedValues(false);
         Vector2 tooltipBoxPadding = new Vector2(8,8);
-        _backgroundRectTransform.sizeDelta = textSize + tooltipBoxPadding; 
+        _backgroundRectTransform.sizeDelta = textSize + tooltipBoxPadding;
     }
 
-    public void Show(string newText)
+    public void Show(string newText, TooltipTimer timer = null)
     {
+        _tooltipTimer = timer;
         gameObject.SetActive(true);
         SetText(newText);
+        UpdateTooltipPosition();
     }
 
     public void Hide()
@@ -66,5 +75,15 @@ public class TooltipUI : MonoBehaviour
         SetText("");
         gameObject.SetActive(false);
     }
-  
+
+    public class TooltipTimer
+    {
+        public float Timer { get; set; }
+
+        public TooltipTimer(float timerValue = 2f)
+        {
+            Timer = timerValue;
+        }
+    }
+
 }

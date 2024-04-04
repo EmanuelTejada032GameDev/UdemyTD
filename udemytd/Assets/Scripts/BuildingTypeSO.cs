@@ -12,5 +12,16 @@ public class BuildingTypeSO : ScriptableObject
     public float maxDistanceFromOtherBuilding;
     public ResourceAmount[] buildingResourceAmountCost;
 
+    public string BuildingCostStringMessage()
+    {
+        string tooltipMessage = "";
+
+        foreach (ResourceAmount requiredResource in buildingResourceAmountCost)
+        {
+            tooltipMessage += $"<color={requiredResource.resourceType.soNameHexColorDisplay}>{requiredResource.resourceType.shortSoName}{requiredResource.resourceAmount}</color> ";
+        }
+        return tooltipMessage;
+    }
+
     //public List<ResourceGeneratorConfig> resourgeGenerationConfigList;
 }

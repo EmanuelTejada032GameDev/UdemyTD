@@ -52,7 +52,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
 
             buildingTypeTransform.gameObject.GetComponent<Button>().onClick.AddListener(() => SelectBuildingType(buildingTypeSO));
 
-            buildingTypeTransform.GetComponent<MouseEventsHandler>().OnMouseEnter += (object sender, EventArgs eventData) => { TooltipUI.Instance.Show(buildingTypeSO.soName); };
+            buildingTypeTransform.GetComponent<MouseEventsHandler>().OnMouseEnter += (object sender, EventArgs eventData) => { TooltipUI.Instance.Show($"{buildingTypeSO.soName}\n" + buildingTypeSO.BuildingCostStringMessage()); };
             buildingTypeTransform.GetComponent<MouseEventsHandler>().OnMouseExit += (object sender, EventArgs eventData) => { TooltipUI.Instance.Hide(); };
 
             _buildingTypeBtnTemplateTransformDictionary[buildingTypeSO] = buildingTypeTransform;
