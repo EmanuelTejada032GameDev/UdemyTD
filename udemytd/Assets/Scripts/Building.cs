@@ -21,4 +21,6 @@ public class Building : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public HealthSystem HealthSystem { get { return _healthSystem; } }
 }

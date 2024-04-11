@@ -13,4 +13,7 @@ public static class Utils
         mouseWorldPosition.z = 0;
         return mouseWorldPosition;
     }
+
+    public static Vector3 GetRandomDirection() => new Vector3(Random.Range(-1f, 1f), Random.Range(-1, 1f)).normalized;
+
 }

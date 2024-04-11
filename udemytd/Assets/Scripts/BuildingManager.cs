@@ -21,6 +21,8 @@ public class BuildingManager : MonoBehaviour
         public BuildingTypeSO selectedBuildingType;
     }
 
+    [SerializeField] private Building _hqBuilding;
+
     private void Awake()
     {
         Instance = this;
@@ -47,6 +49,11 @@ public class BuildingManager : MonoBehaviour
                 }
             }
                
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Enemy.Create(Utils.CursorScreenPosition() + Utils.GetRandomDirection() * 5f);
         }
     }
 
@@ -108,5 +115,7 @@ public class BuildingManager : MonoBehaviour
     //        Gizmos.DrawWireSphere(Utils.CursorScreenPosition(), _selectedBuildingType.maxDistanceFromOtherBuilding);
     //    }
     //}
+
+    public Building GetHQBuilding() => _hqBuilding;
 
 }

@@ -2058,6 +2058,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _showAreaMaxDistanceToPlaceSelectedBuilding: 0
+  _hqBuilding: {fileID: 1451845139}
 --- !u!1001 &616625155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5625,6 +5626,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8f9d6b66e43bfa48a733ced21491faa, type: 3}
+--- !u!114 &1451845139 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7891016050762907561, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
+  m_PrefabInstance: {fileID: 1854985561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6c440f6659da04e9f249c2e789ae82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1453785082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7863,7 +7875,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d544cfb95f0a8ae48a70e2b5c0614d29, type: 2}
     - target: {fileID: 5698486551715392540, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5698486551715392540, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9011,7 +9023,7 @@ Transform:
   - {fileID: 1930024340}
   - {fileID: 2078764444}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2113082277
 PrefabInstance:
