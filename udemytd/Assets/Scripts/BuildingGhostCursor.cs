@@ -15,7 +15,8 @@ public class BuildingGhostCursor : MonoBehaviour
     {
         _buildingGhostTransform.Find("sprite").gameObject.GetComponent<SpriteRenderer>().sprite = e.selectedBuildingType == null? null : e.selectedBuildingType.sprite;
         if(e.selectedBuildingType != null) {
-            _buildingEfficiencyBasedOnNearbyResourceNodesOverlay.Show(e.selectedBuildingType.resourgeGenerationConfig);
+            if(e.selectedBuildingType.isResourceGeneratorBuilding)
+                _buildingEfficiencyBasedOnNearbyResourceNodesOverlay.Show(e.selectedBuildingType.resourgeGenerationConfig);
         }
         else
         {

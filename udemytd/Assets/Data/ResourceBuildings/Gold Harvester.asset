@@ -28,3 +28,4 @@ MonoBehaviour:
     resourceAmount: 100
   - resourceType: {fileID: 11400000, guid: 383decb5dd3bf5b42acfb7c7cb1708ba, type: 2}
     resourceAmount: 40
+  isResourceGeneratorBuilding: 1

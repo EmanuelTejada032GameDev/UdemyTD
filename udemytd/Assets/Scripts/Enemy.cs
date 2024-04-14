@@ -1,3 +1,4 @@
+using S = System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -8,6 +9,8 @@ public class Enemy : MonoBehaviour
 
     private float _lookForTargetTimer;
     private float _lookForTargetMaxTime;
+
+    [SerializeField] private HealthSystem _healthSystem;
 
     public static Enemy Create(Vector3 position)
     {
@@ -20,12 +23,20 @@ public class Enemy : MonoBehaviour
     {
         _rigidBody2d = GetComponent<Rigidbody2D>();
         _targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+        _healthSystem.OnDied += OnDied;
+
     }
 
     private void Update()
     {
         HandleMovement();
         HandleTargeting();
+    }
+
+
+    private void OnDied(object sender, S.EventArgs e)
+    {
+        Destroy(gameObject);
     }
 
     private void HandleMovement()
@@ -44,7 +55,7 @@ public class Enemy : MonoBehaviour
     private void HandleTargeting()
     {
         _lookForTargetTimer -= Time.deltaTime;
-        if (_lookForTargetTimer < 0f)
+        if (_lookForTargetTimer < 1f)
         {
             _lookForTargetTimer += _lookForTargetMaxTime;
             LookForTargets();
@@ -57,7 +68,7 @@ public class Enemy : MonoBehaviour
 
         if (building != default)
         {
-            building.HealthSystem.TakeDamage(6);
+            building.HealthSystem.TakeDamage(3);
             Destroy(gameObject);
         }
     }

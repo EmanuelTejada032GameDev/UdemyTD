@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class ResourceManager : MonoBehaviour
     public event EventHandler OnResourceAmountChanged;
 
     private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
+
+    [SerializeField]private List<ResourceAmount> startingResourceAmount;
     private List<ResourceTypeSO> resourceTypeSoList;
 
     private void Awake()
@@ -44,6 +47,16 @@ public class ResourceManager : MonoBehaviour
         foreach (ResourceTypeSO resourceType in resourceTypeSoList)
         {
             resourceAmountDictionary[resourceType] = 0;
+        }
+
+        SetStartResourcesAmount();
+    }
+
+    private void SetStartResourcesAmount()
+    {
+        foreach (ResourceAmount resourceaAmount in startingResourceAmount)
+        {
+            resourceAmountDictionary[resourceaAmount.resourceType] = resourceaAmount.resourceAmount;
         }
     }
 

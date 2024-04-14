@@ -61,7 +61,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
 
         SelectBuildingType(null);
     }
-
+    #nullable enable
     private void SelectBuildingType(BuildingTypeSO? buildingTypeSO)
     {
         BuildingManager.Instance.SetSelectedBuildingType(buildingTypeSO);

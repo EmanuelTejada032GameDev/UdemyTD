@@ -12,6 +12,7 @@ public class BuildingTypeSO : ScriptableObject
     public float maxDistanceFromOtherBuilding;
     public int maxHealthAmount;
     public ResourceAmount[] buildingResourceAmountCost;
+    public bool isResourceGeneratorBuilding;
 
     public string BuildingCostStringMessage()
     {

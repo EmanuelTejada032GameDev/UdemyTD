@@ -26,3 +26,4 @@ MonoBehaviour:
   buildingResourceAmountCost:
   - resourceType: {fileID: 11400000, guid: def9e9a511d143b44b5497d1a7aacf03, type: 2}
     resourceAmount: 10
+  isResourceGeneratorBuilding: 1

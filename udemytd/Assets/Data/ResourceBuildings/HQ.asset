@@ -24,3 +24,4 @@ MonoBehaviour:
   maxDistanceFromOtherBuilding: 0
   maxHealthAmount: 50
   buildingResourceAmountCost: []
+  isResourceGeneratorBuilding: 1
