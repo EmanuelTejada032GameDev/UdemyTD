@@ -51,10 +51,6 @@ public class BuildingManager : MonoBehaviour
                
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Enemy.Create(Utils.CursorScreenPosition() + Utils.GetRandomDirection() * 5f);
-        }
     }
 
     public void SetSelectedBuildingType(BuildingTypeSO buildingTypeSO)
