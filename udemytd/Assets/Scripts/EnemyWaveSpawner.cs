@@ -1,8 +1,12 @@
+using S = System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyWaveSpawner : MonoBehaviour
 {
+
+    public event S.EventHandler OnWaveChanged;
+
     private enum State
     {
         SpawningWave,
@@ -64,16 +68,20 @@ public class EnemyWaveSpawner : MonoBehaviour
             _currentState = State.WaitingToSpawnWave;
             _currentSpawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count)].position;
             _nextWaveSpawnPositionIndicator.position = _currentSpawnPoint;
+            _timerToSpawnNextWave = 10f;
         }
     }
 
 
     private void SpawnWave()
     {
-        _timerToSpawnNextWave = 10f;
         _remaininEnemiesToSpawn = 5 + 3 * _currentWave;
         _currentWaveEnemies = _remaininEnemiesToSpawn;
         _currentState = State.SpawningWave;
         _currentWave++;
+        OnWaveChanged?.Invoke(this, S.EventArgs.Empty);
     }
+
+    public int GetCurrentWave() => _currentWave;
+    public float GetTimerToSpawnNextWave() => _timerToSpawnNextWave;
 }
