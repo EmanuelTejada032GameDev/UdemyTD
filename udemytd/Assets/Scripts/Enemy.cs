@@ -22,7 +22,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _rigidBody2d = GetComponent<Rigidbody2D>();
-        _targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+        Building hqBuilding = BuildingManager.Instance.GetHQBuilding();
+        _targetTransform = hqBuilding == null? null : hqBuilding.transform;
         _healthSystem.OnDied += OnDied;
 
     }
