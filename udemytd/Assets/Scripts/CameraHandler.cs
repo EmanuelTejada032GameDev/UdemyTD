@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CameraHandler : MonoBehaviour
 {
-    private float _cameraMoveSpeed = 30f;
+    private float _cameraMoveSpeed = 60f;
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
     private float _orthographicSize;

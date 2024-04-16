@@ -84,4 +84,5 @@ public class EnemyWaveSpawner : MonoBehaviour
 
     public int GetCurrentWave() => _currentWave;
     public float GetTimerToSpawnNextWave() => _timerToSpawnNextWave;
+    public Vector3 GetNextSpawnPosition() => _currentSpawnPoint;
 }
