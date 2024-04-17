@@ -9,7 +9,7 @@ public class Tower : MonoBehaviour
     private float _lookForTargetMaxTime;
 
     private float _lastTimeShot;
-    private float _maxTimeBetweenShots = 0.3f;
+    private float _maxTimeBetweenShots = 0.2f;
 
 
     private void Start()

@@ -26,7 +26,7 @@ public class EnemyWaveManagerUI : MonoBehaviour
     {
         Vector3 nextEnemyWaveSpawnPosition = _enemyWaveSpawner.GetNextSpawnPosition();
         Vector3 directionFromCameraToSpawnPosition = (nextEnemyWaveSpawnPosition - _mainCamera.transform.position).normalized;
-        _nextWaveSpawnPositionIndicator.anchoredPosition = directionFromCameraToSpawnPosition * 200f;
+        _nextWaveSpawnPositionIndicator.anchoredPosition = directionFromCameraToSpawnPosition * 400f;
         _nextWaveSpawnPositionIndicator.eulerAngles = new Vector3(0, 0, Utils.GetEulerAngleFromVector3(directionFromCameraToSpawnPosition));
 
         float distanceBetweenCameraAndSpawnPositionOnMap = Vector3.Distance(nextEnemyWaveSpawnPosition, _mainCamera.transform.position);
