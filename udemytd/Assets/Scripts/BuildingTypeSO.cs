@@ -10,6 +10,7 @@ public class BuildingTypeSO : ScriptableObject
     public ResourceGeneratorConfig resourgeGenerationConfig;
     public float spaceRadiusRequiredToBuild;
     public float maxDistanceFromOtherBuilding;
+    public float constructionTime;
     public int maxHealthAmount;
     public ResourceAmount[] buildingResourceAmountCost;
     public bool isResourceGeneratorBuilding;

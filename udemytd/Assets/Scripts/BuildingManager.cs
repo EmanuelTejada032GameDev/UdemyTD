@@ -36,21 +36,27 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() )
+        HandlePlaceBuildingAction();
+    }
+
+    private void HandlePlaceBuildingAction()
+    {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (_selectedBuildingType != null && CanPlaceBuilding(_selectedBuildingType, Utils.CursorScreenPosition())){
+            if (_selectedBuildingType != null && CanPlaceBuilding(_selectedBuildingType, Utils.CursorScreenPosition()))
+            {
                 if (ResourceManager.Instance.CanAffordBuilding(_selectedBuildingType.buildingResourceAmountCost))
                 {
-                    Instantiate(_selectedBuildingType.prefab, Utils.CursorScreenPosition(), Quaternion.identity);
+                    //Instantiate(_selectedBuildingType.prefab, Utils.CursorScreenPosition(), Quaternion.identity);
+                    BuildingConstruction.Create(Utils.CursorScreenPosition(), _selectedBuildingType);
                 }
                 else
                 {
                     TooltipUI.Instance.Show($"Cannot Afford Building {_selectedBuildingType.BuildingCostStringMessage()}", new TooltipUI.TooltipTimer());
                 }
             }
-               
-        }
 
+        }
     }
 
     public void SetSelectedBuildingType(BuildingTypeSO buildingTypeSO)
