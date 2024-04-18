@@ -5,6 +5,8 @@ public class Building : MonoBehaviour
 {
     private HealthSystem _healthSystem;
     private BuildingTypeSO _buildingType;
+    [SerializeField] private Transform _buildingDemolishBtn;
+
 
     public void Start()
     {
@@ -12,7 +14,9 @@ public class Building : MonoBehaviour
         _buildingType = GetComponent<BuildingTypeHolder>().BuildingTypeSO;
         _healthSystem.OnDied += OnDied;
         _healthSystem.SetMaxHealthAmount(_buildingType.maxHealthAmount, true);
+        HideDemolishBtn();
     }
+
     private void Update()
     {
     }
@@ -23,4 +27,32 @@ public class Building : MonoBehaviour
     }
 
     public HealthSystem HealthSystem { get { return _healthSystem; } }
+
+    private void OnMouseEnter()
+    {
+        ShowDemolishBtn();
+    }
+
+    private void OnMouseExit()
+    {
+        HideDemolishBtn();
+    }
+
+    private void ShowDemolishBtn()
+    {
+        if (_buildingDemolishBtn != null)
+        {
+            _buildingDemolishBtn.gameObject.SetActive(true);
+        }
+    }
+
+    private void HideDemolishBtn()
+    {
+        if (_buildingDemolishBtn != null)
+        {
+            _buildingDemolishBtn.gameObject.SetActive(false);
+        }
+    }
 }
+
+
