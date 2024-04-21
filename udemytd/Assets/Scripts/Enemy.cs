@@ -106,6 +106,8 @@ public class Enemy : MonoBehaviour
             if (hqBuilding == null)
             {
                 _rigidBody2d.velocity = Vector3.zero;
+                SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
+                SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
                 Destroy(gameObject, Random.Range(2.5f, 6f));
                 return;
             }

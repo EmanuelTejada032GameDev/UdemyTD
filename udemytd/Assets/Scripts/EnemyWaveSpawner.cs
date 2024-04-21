@@ -87,6 +87,7 @@ public class EnemyWaveSpawner : MonoBehaviour
         _currentState = State.SpawningWave;
         _currentWave++;
         OnWaveChanged?.Invoke(this, S.EventArgs.Empty);
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyWaveStarting, 0.2f);
     }
 
     public int GetCurrentWave() => _currentWave;

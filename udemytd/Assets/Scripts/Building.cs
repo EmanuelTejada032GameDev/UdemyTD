@@ -28,6 +28,7 @@ public class Building : MonoBehaviour
     private void OnBuildingDamaged(object sender, EventArgs e)
     {
         ShowRepairBtn();
+        SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDamaged);
     }
 
     private void OnBuildingHealed(object sender, EventArgs e)
@@ -41,6 +42,7 @@ public class Building : MonoBehaviour
 
     private void OnDied(object sender, EventArgs e)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDestroyed);
         Destroy(gameObject);
     }
 
