@@ -7,10 +7,13 @@ public class Building : MonoBehaviour
     private BuildingTypeSO _buildingType;
     [SerializeField] private Transform _buildingDemolishBtn;
 
+    private void Awake()
+    {
+        _healthSystem = GetComponent<HealthSystem>();
+    }
 
     public void Start()
     {
-        _healthSystem = GetComponent<HealthSystem>();
         _buildingType = GetComponent<BuildingTypeHolder>().BuildingTypeSO;
         _healthSystem.OnDied += OnDied;
         _healthSystem.SetMaxHealthAmount(_buildingType.maxHealthAmount, true);

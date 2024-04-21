@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class BuildingManager : MonoBehaviour
 {
 
-    public static BuildingManager Instance { get; private set; } 
+    public static BuildingManager Instance { get; private set; }
+
 
     private Camera mainCamera;
     private BuildingTypeSO _selectedBuildingType;
@@ -32,6 +34,12 @@ public class BuildingManager : MonoBehaviour
     {
         mainCamera = Camera.main;
         buildingTypeSOList = Resources.Load<BuildingTypeSOList>("BuildingTypeSOList").soList;
+        _hqBuilding.GetComponent<HealthSystem>().OnDied += OnHqDied;
+    }
+
+    private void OnHqDied(object sender, EventArgs e)
+    {
+        GameOverUI.Instance.Show();
     }
 
     private void Update()

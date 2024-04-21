@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyWaveSpawner : MonoBehaviour
 {
 
+    public static EnemyWaveSpawner Instance {get; private set;}
+
     public event S.EventHandler OnWaveChanged;
 
     private enum State
@@ -24,6 +26,11 @@ public class EnemyWaveSpawner : MonoBehaviour
     private Vector3 _currentSpawnPoint;
     private float _timerToSpawnNextWave;
     private float _nextEnemySpawnTimer;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
