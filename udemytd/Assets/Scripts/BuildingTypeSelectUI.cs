@@ -23,6 +23,14 @@ public class BuildingTypeSelectUI : MonoBehaviour
         _buildingTypeSOList = Resources.Load<BuildingTypeSOList>(typeof(BuildingTypeSOList).Name).soList.Where(x => !_buildingTypesSOToExcludeFromUI.Contains(x)).ToList();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            SelectBuildingType(null);
+        }
+    }
+
     private void Start()
     {
         InitializeBuildingTypeUI();

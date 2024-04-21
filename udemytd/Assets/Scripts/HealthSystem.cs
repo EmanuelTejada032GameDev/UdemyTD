@@ -4,6 +4,7 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     public event EventHandler OnDamaged;
+    public event EventHandler OnHealed;
     public event EventHandler OnDied;
 
     private int _healthAmount;
@@ -15,6 +16,7 @@ public class HealthSystem : MonoBehaviour
     }
 
     public int HealthAmount => _healthAmount;
+    public int MaxHealth => _maxHealthAmount;
     public float NormalizedHealthAmount => (float)_healthAmount/_maxHealthAmount; //used for health bar display
 
     public void TakeDamage(int damageAmount)
@@ -24,6 +26,19 @@ public class HealthSystem : MonoBehaviour
         OnDamaged?.Invoke(this,EventArgs.Empty);
 
         if (IsDead()) OnDied?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Heal(int amount)
+    {
+        _healthAmount += amount;
+        _healthAmount = Mathf.Clamp(0, _maxHealthAmount, _healthAmount);
+        OnHealed?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void HealFull()
+    {
+        _healthAmount = _maxHealthAmount;
+        OnHealed?.Invoke(this, EventArgs.Empty);
     }
 
     public bool IsDead() => _healthAmount == 0;

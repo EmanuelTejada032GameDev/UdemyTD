@@ -5545,6 +5545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1155916107}
+  - component: {fileID: 1155916108}
   m_Layer: 5
   m_Name: GameOverUI
   m_TagString: Untagged
@@ -5577,6 +5578,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1155916108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155916106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4965ca503e4cf4145a6396533bbcd9d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1167999132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8764,6 +8777,8 @@ MonoBehaviour:
     resourceAmount: 60
   - resourceType: {fileID: 11400000, guid: def9e9a511d143b44b5497d1a7aacf03, type: 2}
     resourceAmount: 100
+  - resourceType: {fileID: 11400000, guid: 3c783c9d84782ac46b05a50e2e1f2b81, type: 2}
+    resourceAmount: 40
 --- !u!4 &1648540222
 Transform:
   m_ObjectHideFlags: 0
@@ -9836,6 +9851,10 @@ PrefabInstance:
       propertyPath: BuildingTypeSO
       value: 
       objectReference: {fileID: 11400000, guid: d544cfb95f0a8ae48a70e2b5c0614d29, type: 2}
+    - target: {fileID: 1071172292969217063, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
+      propertyPath: _maxHealthAmount
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5698486551715392540, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -10703,7 +10722,7 @@ GameObject:
   - component: {fileID: 2036847401}
   - component: {fileID: 2036847402}
   m_Layer: 5
-  m_Name: mainMenu
+  m_Name: mainMenuBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

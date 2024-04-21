@@ -22,6 +22,7 @@ MonoBehaviour:
     _maxResourceNodes: 6
   spaceRadiusRequiredToBuild: 10
   maxDistanceFromOtherBuilding: 0
-  maxHealthAmount: 50
+  constructionTime: 0
+  maxHealthAmount: 60
   buildingResourceAmountCost: []
   isResourceGeneratorBuilding: 1

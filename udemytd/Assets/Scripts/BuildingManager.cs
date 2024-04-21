@@ -53,10 +53,11 @@ public class BuildingManager : MonoBehaviour
         {
             if (_selectedBuildingType != null && CanPlaceBuilding(_selectedBuildingType, Utils.CursorScreenPosition()))
             {
-                if (ResourceManager.Instance.CanAffordBuilding(_selectedBuildingType.buildingResourceAmountCost))
+                if (ResourceManager.Instance.CanAffordResources(_selectedBuildingType.buildingResourceAmountCost))
                 {
                     //Instantiate(_selectedBuildingType.prefab, Utils.CursorScreenPosition(), Quaternion.identity);
                     BuildingConstruction.Create(Utils.CursorScreenPosition(), _selectedBuildingType);
+                    ResourceManager.Instance.SpendResources(_selectedBuildingType.buildingResourceAmountCost);
                 }
                 else
                 {

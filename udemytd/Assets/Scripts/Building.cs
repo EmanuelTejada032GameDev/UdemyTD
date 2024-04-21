@@ -6,6 +6,7 @@ public class Building : MonoBehaviour
     private HealthSystem _healthSystem;
     private BuildingTypeSO _buildingType;
     [SerializeField] private Transform _buildingDemolishBtn;
+    [SerializeField] private Transform _buildingRepairBtn;
 
     private void Awake()
     {
@@ -15,9 +16,23 @@ public class Building : MonoBehaviour
     public void Start()
     {
         _buildingType = GetComponent<BuildingTypeHolder>().BuildingTypeSO;
+        _healthSystem.OnDamaged += OnBuildingDamaged;
+        _healthSystem.OnHealed += OnBuildingHealed;
         _healthSystem.OnDied += OnDied;
+
         _healthSystem.SetMaxHealthAmount(_buildingType.maxHealthAmount, true);
         HideDemolishBtn();
+        HideRepairBtn();
+    }
+
+    private void OnBuildingDamaged(object sender, EventArgs e)
+    {
+        ShowRepairBtn();
+    }
+
+    private void OnBuildingHealed(object sender, EventArgs e)
+    {
+        if (_healthSystem.IsFullHealth()) HideRepairBtn();
     }
 
     private void Update()
@@ -54,6 +69,22 @@ public class Building : MonoBehaviour
         if (_buildingDemolishBtn != null)
         {
             _buildingDemolishBtn.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowRepairBtn()
+    {
+        if (_buildingRepairBtn != null)
+        {
+            _buildingRepairBtn.gameObject.SetActive(true);
+        }
+    }
+
+    private void HideRepairBtn()
+    {
+        if (_buildingRepairBtn != null)
+        {
+            _buildingRepairBtn.gameObject.SetActive(false);
         }
     }
 }

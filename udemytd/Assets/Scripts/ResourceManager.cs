@@ -25,14 +25,6 @@ public class ResourceManager : MonoBehaviour
        
     }
 
-    private void PrintResourceDictionaryStatus()
-    {
-        foreach (ResourceTypeSO item in resourceAmountDictionary.Keys)
-        {
-            Debug.Log(item.soName + ": " + resourceAmountDictionary[item]);
-        }
-    }
-
 
     public void AddResource(ResourceTypeSO resourceTypeSO, int amount = 1)
     {
@@ -65,13 +57,12 @@ public class ResourceManager : MonoBehaviour
         return resourceAmountDictionary[resourceTypeSO];
     }
 
-    public bool CanAffordBuilding(ResourceAmount[] resourceAmountsCost)
+    public bool CanAffordResources(ResourceAmount[] resourceAmountsCost)
     {
         foreach (ResourceAmount resourceAmount in resourceAmountsCost)
         {
             if (resourceAmountDictionary[resourceAmount.resourceType] < resourceAmount.resourceAmount) return false;
         }
-        SpendResources(resourceAmountsCost);
         return true;
     }
 
