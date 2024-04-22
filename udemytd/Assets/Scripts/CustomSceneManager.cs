@@ -12,5 +12,6 @@ public class CustomSceneManager : MonoBehaviour
     public static void Load(Scene scene)
     {
         SceneManager.LoadScene(scene.ToString());
+        Time.timeScale = 1f;
     }
 }

@@ -43,7 +43,7 @@ public class OptionsMenuUI : MonoBehaviour
 
         transform.Find("mainMenuBtn").GetComponent<Button>().onClick.AddListener(() =>
         {
-
+            CustomSceneManager.Load(CustomSceneManager.Scene.MainMenu);
         });
     }
 
