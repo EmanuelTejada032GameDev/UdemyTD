@@ -21,6 +21,8 @@ public class SoundManager : MonoBehaviour
     private AudioSource _audioSource;
     private Dictionary<Sound, AudioClip> _soundAudioClipDictionary;
 
+    private float _currentVolume = 0.5f;
+
     private void Awake()
     {
         Instance = this;
@@ -33,8 +35,25 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(Sound sound, float volumeScale = 1)
+    public void PlaySound(Sound sound, float? volumeScale = null)
     {
-        _audioSource.PlayOneShot(_soundAudioClipDictionary[sound], volumeScale);
+        _audioSource.PlayOneShot(_soundAudioClipDictionary[sound], _currentVolume);
+    }
+
+    public void IncreaseVolume()
+    {
+        _currentVolume += 0.1f;
+        _currentVolume = Mathf.Clamp01(_currentVolume);
+    }
+
+    public void DecreaseVolume()
+    {
+        _currentVolume -= 0.1f;
+        _currentVolume = Mathf.Clamp01(_currentVolume);
+    }
+
+    public float GetVolume()
+    {
+        return _currentVolume;
     }
 }
