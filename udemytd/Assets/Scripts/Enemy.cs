@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
 
     private void OnDied(object sender, S.EventArgs e)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
+        Instantiate(Resources.Load<Transform>("pfEnemyDieParticles"), transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -78,7 +80,7 @@ public class Enemy : MonoBehaviour
         if (building != default)
         {
             building.HealthSystem.TakeDamage(3);
-            Destroy(gameObject);
+            _healthSystem.TakeDamage(999);
         }
     }
 

@@ -19,6 +19,7 @@ public class BuildingDemolitionButtonUI : MonoBehaviour
                 ResourceManager.Instance.AddResource(resourceAmount.resourceType,Mathf.FloorToInt(resourceAmount.resourceAmount * 0.6f));
             }
 
+            Instantiate(Resources.Load<Transform>("pfBuildingPlacedParticles"), _building.gameObject.transform.position, Quaternion.identity);
             Destroy(_building.gameObject);
         });
     }

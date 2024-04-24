@@ -28,6 +28,7 @@ public class BuildingConstruction : MonoBehaviour
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _buildingTypeHolder = GetComponent<BuildingTypeHolder>();
         _buildingConstructionSpriteMaterial = _spriteRenderer.material;
+        Instantiate(Resources.Load<Transform>("pfBuildingPlacedParticles"), transform.position, Quaternion.identity);
     }
 
     private void Start()
@@ -42,6 +43,7 @@ public class BuildingConstruction : MonoBehaviour
         if (_constructionTimer <= 0)
         {
             Instantiate(_buildingType.prefab, transform.position, Quaternion.identity);
+            Instantiate(Resources.Load<Transform>("pfBuildingPlacedParticles"), transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
