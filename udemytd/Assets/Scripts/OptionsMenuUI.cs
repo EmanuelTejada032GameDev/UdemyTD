@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -45,18 +46,39 @@ public class OptionsMenuUI : MonoBehaviour
         {
             CustomSceneManager.Load(CustomSceneManager.Scene.MainMenu);
         });
+
+        transform.Find("toggleEdgeScrollingBtn").GetComponent<Toggle>().onValueChanged.AddListener((bool newValue) =>
+        {
+            CameraHandler.Instance.SetEdgeScrolling(newValue);
+        });
+
     }
 
     private void Start()
     {
         UpdateText();
         gameObject.SetActive(false);
+        transform.Find("toggleEdgeScrollingBtn").GetComponent<Toggle>().SetIsOnWithoutNotify(CameraHandler.Instance.GetScrollingValue());
+
+    }
+
+    private void Update()
+    {
+        ListenPauseBtns();
     }
 
     private void UpdateText()
     {
         _soundValueText.SetText(Mathf.RoundToInt(_soundManager.GetVolume() * 10).ToString());
         _musicValueText.SetText(Mathf.RoundToInt(_musicManager.GetVolume() * 10).ToString());
+    }
+
+    private void ListenPauseBtns()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            ToggleMenuVisible();
+        }
     }
 
     public void ToggleMenuVisible()

@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
     private AudioSource _audioSource;
     private Dictionary<Sound, AudioClip> _soundAudioClipDictionary;
 
-    private float _currentVolume = 0.1f;
+    private float _currentVolume = 0.5f;
 
     private void Awake()
     {

@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
         Building hqBuilding = BuildingManager.Instance.GetHQBuilding();
         _targetTransform = hqBuilding == null? null : hqBuilding.transform;
         _healthSystem.OnDied += OnDied;
+        _healthSystem.OnDamaged += HealthSystem_OnDamaged;
+
 
     }
 
@@ -38,6 +40,12 @@ public class Enemy : MonoBehaviour
     private void OnDied(object sender, S.EventArgs e)
     {
         Destroy(gameObject);
+    }
+
+    private void HealthSystem_OnDamaged(object sender, System.EventArgs e)
+    {
+        Debug.Log("EnemyDamaged");
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
     }
 
     private void HandleMovement()
