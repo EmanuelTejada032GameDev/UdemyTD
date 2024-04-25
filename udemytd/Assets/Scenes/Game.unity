@@ -2768,7 +2768,7 @@ Transform:
   - {fileID: 122066042}
   - {fileID: 1129655494}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &430720494
 MonoBehaviour:
@@ -6694,6 +6694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1078932641}
   - component: {fileID: 1078932640}
+  - component: {fileID: 1078932642}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
@@ -6787,14 +6788,56 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078932639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 100.3, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 58.425438, y: 78.81071, z: 1.2858235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1218255773}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1078932642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078932639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e4bc0dd7aad71418d1c9b742acf283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 0.78125805, b: 0.4669811, a: 1}
+    key2: {r: 0.57254905, g: 0.75686276, b: 0.8039216, a: 0}
+    key3: {r: 0.5711552, g: 0.7535942, b: 0.8018868, a: 0}
+    key4: {r: 0.8490566, g: 0.75206995, b: 0.5246529, a: 0}
+    key5: {r: 1, g: 1, b: 1, a: 0}
+    key6: {r: 1, g: 1, b: 1, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 16962
+    ctime1: 23708
+    ctime2: 31033
+    ctime3: 38936
+    ctime4: 47609
+    ctime5: 57440
+    ctime6: 57440
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  secondsPerDay: 24
 --- !u!1001 &1084223424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7691,7 +7734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1218255773}
   m_Layer: 0
-  m_Name: CameraConfig
+  m_Name: '---------------- Camera and Effects ---------------- '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7716,6 +7759,7 @@ Transform:
   - {fileID: 1919055605}
   - {fileID: 246741355}
   - {fileID: 1774807360}
+  - {fileID: 1078932641}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7749,7 +7793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentState: 0
-  _currentWave: 15
+  _currentWave: 0
   _currentWaveEnemies: 0
   _remaininEnemiesToSpawn: 0
   _nextWaveSpawnPositionIndicator: {fileID: 903310330}
@@ -7777,7 +7821,7 @@ Transform:
   - {fileID: 205588055}
   - {fileID: 903310330}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1242664594 stripped
 Transform:
@@ -11455,7 +11499,7 @@ Transform:
   - {fileID: 2109390150}
   - {fileID: 1662834272}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1711374017
 PrefabInstance:
@@ -12621,7 +12665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698486551715392540, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5698486551715392540, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12677,8 +12721,12 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 7030b8e3eb49e8440ae8eb3ec8b45d05, type: 3}
     - target: {fileID: 6567910085899730768, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6567910085899730768, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c2716e81b4079f4e8035c438c6adb74, type: 3}
 --- !u!1001 &1884993754
