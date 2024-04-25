@@ -41,6 +41,8 @@ public class BuildingManager : MonoBehaviour
     {
         GameOverUI.Instance.Show();
         SoundManager.Instance.PlaySound(SoundManager.Sound.GameOver);
+        CameraShakeComponent.Instance.ShakeCamera(30f, .6f);
+
     }
 
     private void Update()

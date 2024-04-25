@@ -41,12 +41,14 @@ public class Enemy : MonoBehaviour
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
         Instantiate(Resources.Load<Transform>("pfEnemyDieParticles"), transform.position, Quaternion.identity);
+        CameraShakeComponent.Instance.ShakeCamera(1f, .1f);
         Destroy(gameObject);
     }
 
     private void HealthSystem_OnDamaged(object sender, System.EventArgs e)
     {
         Debug.Log("EnemyDamaged");
+        CameraShakeComponent.Instance.ShakeCamera(2f, .15f);
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
     }
 

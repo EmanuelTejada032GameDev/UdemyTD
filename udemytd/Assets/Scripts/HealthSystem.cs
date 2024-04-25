@@ -24,7 +24,6 @@ public class HealthSystem : MonoBehaviour
         _healthAmount -= damageAmount;
         _healthAmount = Mathf.Clamp(_healthAmount, 0, _maxHealthAmount);
         OnDamaged?.Invoke(this,EventArgs.Empty);
-
         if (IsDead()) OnDied?.Invoke(this, EventArgs.Empty);
     }
 
