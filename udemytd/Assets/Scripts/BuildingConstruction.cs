@@ -14,8 +14,7 @@ public class BuildingConstruction : MonoBehaviour
     
     public static BuildingConstruction Create(Vector3 position, BuildingTypeSO buildingType)
     {
-        Transform pfBuildingConstruction = Resources.Load<Transform>("pfBuildingConstruction");
-        Transform instantiatedBuildingConstruction = Instantiate(pfBuildingConstruction, position, Quaternion.identity);
+        Transform instantiatedBuildingConstruction = Instantiate(GameAssetsManager.Instance.pfBuildingConstruction, position, Quaternion.identity);
         BuildingConstruction buildingConstruction = instantiatedBuildingConstruction.GetComponent<BuildingConstruction>();
         buildingConstruction.SetBuildingType(buildingType);
         return instantiatedBuildingConstruction.GetComponent<BuildingConstruction>();
@@ -28,7 +27,7 @@ public class BuildingConstruction : MonoBehaviour
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _buildingTypeHolder = GetComponent<BuildingTypeHolder>();
         _buildingConstructionSpriteMaterial = _spriteRenderer.material;
-        Instantiate(Resources.Load<Transform>("pfBuildingPlacedParticles"), transform.position, Quaternion.identity);
+        Instantiate(GameAssetsManager.Instance.pfBuildingPlacedParticles, transform.position, Quaternion.identity);
     }
 
     private void Start()
@@ -43,7 +42,7 @@ public class BuildingConstruction : MonoBehaviour
         if (_constructionTimer <= 0)
         {
             Instantiate(_buildingType.prefab, transform.position, Quaternion.identity);
-            Instantiate(Resources.Load<Transform>("pfBuildingPlacedParticles"), transform.position, Quaternion.identity);
+            Instantiate(GameAssetsManager.Instance.pfBuildingPlacedParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

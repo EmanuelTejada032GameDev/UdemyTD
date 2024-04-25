@@ -14,8 +14,7 @@ public class Enemy : MonoBehaviour
 
     public static Enemy Create(Vector3 position)
     {
-        Transform pfEnemy = Resources.Load<Transform>("pfEnemy");
-        Transform enemyTrasnform = Instantiate(pfEnemy, position, Quaternion.identity);
+        Transform enemyTrasnform = Instantiate(GameAssetsManager.Instance.pfEnemy, position, Quaternion.identity);
         return enemyTrasnform.GetComponent<Enemy>();
     }
 
@@ -40,7 +39,7 @@ public class Enemy : MonoBehaviour
     private void OnDied(object sender, S.EventArgs e)
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
-        Instantiate(Resources.Load<Transform>("pfEnemyDieParticles"), transform.position, Quaternion.identity);
+        Instantiate(GameAssetsManager.Instance.pfEnemyDieParticles, transform.position, Quaternion.identity);
         CameraShakeComponent.Instance.ShakeCamera(1f, .1f);
         ChromaticAberrationEffect.Instance.SetChromaticEffectWeigth(.2f);
         Destroy(gameObject);

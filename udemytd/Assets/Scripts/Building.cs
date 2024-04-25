@@ -46,7 +46,7 @@ public class Building : MonoBehaviour
     private void OnDied(object sender, EventArgs e)
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDestroyed);
-        Instantiate(Resources.Load<Transform>("pfEnemyDieParticles"), transform.position, Quaternion.identity);
+        Instantiate(GameAssetsManager.Instance.pfEnemyDieParticles, transform.position, Quaternion.identity);
         CameraShakeComponent.Instance.ShakeCamera(10f, .15f);
         ChromaticAberrationEffect.Instance.SetChromaticEffectWeigth(1f);
         Destroy(gameObject);
