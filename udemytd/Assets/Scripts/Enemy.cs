@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
         Instantiate(Resources.Load<Transform>("pfEnemyDieParticles"), transform.position, Quaternion.identity);
         CameraShakeComponent.Instance.ShakeCamera(1f, .1f);
+        ChromaticAberrationEffect.Instance.SetChromaticEffectWeigth(.2f);
         Destroy(gameObject);
     }
 
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("EnemyDamaged");
         CameraShakeComponent.Instance.ShakeCamera(2f, .15f);
+        ChromaticAberrationEffect.Instance.SetChromaticEffectWeigth(.2f);
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
     }
 

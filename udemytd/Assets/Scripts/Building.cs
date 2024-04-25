@@ -30,6 +30,8 @@ public class Building : MonoBehaviour
         ShowRepairBtn();
         SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDamaged);
         CameraShakeComponent.Instance.ShakeCamera(4f, .1f);
+        ChromaticAberrationEffect.Instance.SetChromaticEffectWeigth(.3f);
+
     }
 
     private void OnBuildingHealed(object sender, EventArgs e)
@@ -46,6 +48,7 @@ public class Building : MonoBehaviour
         SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDestroyed);
         Instantiate(Resources.Load<Transform>("pfEnemyDieParticles"), transform.position, Quaternion.identity);
         CameraShakeComponent.Instance.ShakeCamera(10f, .15f);
+        ChromaticAberrationEffect.Instance.SetChromaticEffectWeigth(1f);
         Destroy(gameObject);
     }
 
