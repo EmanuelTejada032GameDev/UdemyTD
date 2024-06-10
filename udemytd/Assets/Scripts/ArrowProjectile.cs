@@ -6,7 +6,7 @@ public class ArrowProjectile : MonoBehaviour
 {
 
     private Enemy _enemyTarget;
-    [SerializeField] private float _moveSpeed = 10f;
+    [SerializeField] private float _moveSpeed = 12f;
 
     private Vector3 _lastMoveDirection;
 
